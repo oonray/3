@@ -1,0 +1,6 @@
+
+name: storage
+namespace: minio-operator
+resources:
+  - storageclass.yaml
+  - ingress.yaml

@@ -1,0 +1,4 @@
+name: metrics
+namespace: metrics
+resources:
+  - deployment.yaml
