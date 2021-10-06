@@ -24,7 +24,7 @@ spec:
           ports:
             - containerPort: 9091
           volumeMounts:
-            - name: sorage0
+            - name: storage0
               mountPath: /data
 
         - name: minio2
@@ -37,7 +37,7 @@ spec:
           ports:
             - containerPort: 9093
           volumeMounts:
-            - name: sorage1
+            - name: storage1
               mountPath: /data
 
         - name: minio3
@@ -50,7 +50,7 @@ spec:
           ports:
             - containerPort: 9093
           volumeMounts:
-            - name: sorage2
+            - name: storage2
               mountPath: /data
 
       nodeSelector:
