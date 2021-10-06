@@ -16,7 +16,11 @@ spec:
       containers:
         - name: minio1
           image: minio/minio
-          command: server /data --console-address ":9091"
+          command:
+            - server
+            - /data
+            - --console-address
+            - ":9091"
           ports:
             - containerPort: 9091
           volumeMounts:
@@ -25,7 +29,11 @@ spec:
 
         - name: minio2
           image: minio/minio
-          command: server /data --console-address ":9092"
+          command:
+            - server
+            - /data
+            - --console-address
+            - ":9092"
           ports:
             - containerPort: 9093
           volumeMounts:
@@ -34,7 +42,11 @@ spec:
 
         - name: minio3
           image: minio/minio
-          command: server /data --console-address ":9093"
+          command:
+            - server
+            - /data
+            - --console-address
+            - ":9093"
           ports:
             - containerPort: 9093
           volumeMounts:
