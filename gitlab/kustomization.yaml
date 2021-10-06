@@ -1,6 +1,5 @@
-
-name: storage
-namespace: minio
+name: gitlab
+namespace: gitlab
 resources:
   - deployment.yaml
   - ingress.yaml

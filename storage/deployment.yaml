@@ -14,7 +14,47 @@ spec:
         app: minio
     spec:
       containers:
-        - name: minio
-          image: graphiteapp/graphite-statsd
+        - name: minio1
+          image: minio/minio
+          command: server /data --console-address ":9091"
+          ports:
+            - containerPort: 9091
+          volumeMounts:
+            - name: sorage0
+              mountPath: /data
+
+        - name: minio2
+          image: minio/minio
+          command: server /data --console-address ":9092"
+          ports:
+            - containerPort: 9093
+          volumeMounts:
+            - name: sorage1
+              mountPath: /data
+
+        - name: minio3
+          image: minio/minio
+          command: server /data --console-address ":9093"
+          ports:
+            - containerPort: 9093
+          volumeMounts:
+            - name: sorage2
+              mountPath: /data
+
       nodeSelector:
         role: storage
+      volumes:
+        - name: storage0
+          hostPath:
+            path: /disk3/minio
+            type: Directory
+
+        - name: storage1
+          hostPath:
+            path: /disk2/minio
+            type: Directory
+
+        - name: storage2
+          hostPath:
+            path: /disk2/minio
+            type: Directory
