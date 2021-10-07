@@ -17,7 +17,7 @@ spec:
       containers:
         - name: minio1
           image: minio/minio
-          command:
+          args:
             - server
             - /data
             - --console-address
