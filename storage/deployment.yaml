@@ -29,7 +29,7 @@ spec:
               mountPath: /data
 
       nodeSelector:
-        storage: 01
+        storage: "01"
 
       volumes:
         - name: storage1
@@ -67,7 +67,7 @@ spec:
               mountPath: /data
 
       nodeSelector:
-        storage: 02
+        storage: "02"
 
       volumes:
         - name: storage2
@@ -105,7 +105,7 @@ spec:
               mountPath: /data
 
       nodeSelector:
-        storage: 03
+        storage: "03"
 
       volumes:
         - name: storage3
