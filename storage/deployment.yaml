@@ -1,17 +1,18 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: minio-deployment
+  name: minio1
   labels:
-    app: minio
+    app: minio1
 spec:
   selector:
     matchLabels:
-      app: minio
+      app: minio1
   template:
     metadata:
       labels:
-        app: minio
+        app: minio1
     spec:
       containers:
         - name: minio1
@@ -24,10 +25,73 @@ spec:
           ports:
             - containerPort: 9091
           volumeMounts:
-            - name: storage0
+            - name: storage1
               mountPath: /data
 
+      nodeSelector:
+        storage: 01
+
+      volumes:
+        - name: storage1
+          hostPath:
+            path: /disk1/minio
+            type: Directory
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio2
+  labels:
+    app: minio2
+spec:
+  selector:
+    matchLabels:
+      app: minio2
+  template:
+    metadata:
+      labels:
+        app: minio2
+    spec:
+      containers:
         - name: minio2
+          image: minio/minio
+          command:
+            - server
+            - /data
+            - --console-address
+            - ":9092"
+          ports:
+            - containerPort: 9092
+          volumeMounts:
+            - name: storage2
+              mountPath: /data
+
+      nodeSelector:
+        storage: 02
+
+      volumes:
+        - name: storage2
+          hostPath:
+            path: /disk1/minio
+            type: Directory
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio3
+  labels:
+    app: minio3
+spec:
+  selector:
+    matchLabels:
+      app: minio3
+  template:
+    metadata:
+      labels:
+        app: minio3
+    spec:
+      containers:
+        - name: minio3
           image: minio/minio
           command:
             - server
@@ -37,36 +101,14 @@ spec:
           ports:
             - containerPort: 9093
           volumeMounts:
-            - name: storage1
-              mountPath: /data
-
-        - name: minio3
-          image: minio/minio
-          command:
-            - server
-            - /data
-            - --console-address
-            - ":9093"
-          ports:
-            - containerPort: 9093
-          volumeMounts:
-            - name: storage2
+            - name: storage3
               mountPath: /data
 
       nodeSelector:
-        role: storage
+        storage: 03
+
       volumes:
-        - name: storage0
+        - name: storage3
           hostPath:
-            path: /disk3/minio
-            type: Directory
-
-        - name: storage1
-          hostPath:
-            path: /disk2/minio
-            type: Directory
-
-        - name: storage2
-          hostPath:
-            path: /disk2/minio
+            path: /disk1/minio
             type: Directory
