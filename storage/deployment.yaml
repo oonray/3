@@ -97,7 +97,7 @@ spec:
             - server
             - /data
             - --console-address
-            - ":9092"
+            - ":9093"
           ports:
             - containerPort: 9093
           volumeMounts:
