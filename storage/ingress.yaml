@@ -9,6 +9,7 @@ spec:
   ports:
     - name: ui1
       protocol: TCP
+      type: NodePort
       port: 9091
       targetPort: 9091
 ---
@@ -22,6 +23,7 @@ spec:
   ports:
     - name: ui2
       protocol: TCP
+      type: NodePort
       port: 9092
       targetPort: 9092
 ---
@@ -35,52 +37,6 @@ spec:
   ports:
     - name: ui3
       protocol: TCP
+      type: NodePort
       port: 9093
       targetPort: 9093
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: minio1
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /minio-console1
-        backend:
-          serviceName: console1
-          servicePort: 9091
-
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: minio2
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /minio-console2
-        backend:
-          serviceName: console2
-          servicePort: 9092
-
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: minio3
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /minio-console3
-        backend:
-          serviceName: console3
-          servicePort: 9093
