@@ -55,7 +55,7 @@ spec:
       containers:
         - name: minio2
           image: minio/minio
-          command:
+          args:
             - server
             - /data
             - --console-address
@@ -93,7 +93,7 @@ spec:
       containers:
         - name: minio3
           image: minio/minio
-          command:
+          args:
             - server
             - /data
             - --console-address
