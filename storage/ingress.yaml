@@ -6,10 +6,10 @@ metadata:
 spec:
   selector:
     app: minio1
+  type: NodePort
   ports:
     - name: ui1
       protocol: TCP
-      type: NodePort
       port: 9091
       targetPort: 9091
 ---
@@ -20,10 +20,10 @@ metadata:
 spec:
   selector:
     app: minio2
+  type: NodePort
   ports:
     - name: ui2
       protocol: TCP
-      type: NodePort
       port: 9092
       targetPort: 9092
 ---
@@ -34,9 +34,9 @@ metadata:
 spec:
   selector:
     app: minio3
+  type: NodePort
   ports:
     - name: ui3
       protocol: TCP
-      type: NodePort
       port: 9093
       targetPort: 9093
