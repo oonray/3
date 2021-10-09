@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: smb
+data:
+  username: c21iCg==
+  password: TDRQUHZLNzZ5bEAwMDNRaTFJa2sK

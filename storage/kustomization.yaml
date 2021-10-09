@@ -2,3 +2,4 @@ namespace: minio
 resources:
   - deployment.yaml
   - ingress.yaml
+  - secrets.enc.json

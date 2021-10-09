@@ -27,7 +27,6 @@ spec:
           volumeMounts:
             - name: storage1
               mountPath: /data
-
       nodeSelector:
         storage: "01"
 
