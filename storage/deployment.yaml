@@ -17,11 +17,6 @@ spec:
       containers:
         - name: samba
           image: dperson/samba
-          args:
-            - server
-            - /data
-            - --console-address
-            - ":9091"
           ports:
             - containerPort: 139
             - containerPort: 445
