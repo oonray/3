@@ -17,6 +17,10 @@ spec:
       containers:
         - name: samba
           image: dperson/samba
+          args:
+            - "-n"
+            - "-r"
+            - "-s data;/disk1"
           ports:
             - containerPort: 139
             - containerPort: 445
