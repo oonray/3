@@ -2,112 +2,55 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: minio1
+  name: smb1
   labels:
-    app: minio1
+    app: smb1
 spec:
   selector:
     matchLabels:
-      app: minio1
+      app: smb1
   template:
     metadata:
       labels:
-        app: minio1
+        app: smb1
     spec:
       containers:
-        - name: minio1
-          image: minio/minio
+        - name: samba
+          image: dperson/samba
           args:
             - server
             - /data
             - --console-address
             - ":9091"
           ports:
-            - containerPort: 9091
+            - containerPort: 139
+            - containerPort: 445
           volumeMounts:
             - name: storage1
-              mountPath: /data
+              mountPath: /mount
+
       nodeSelector:
         storage: "01"
 
       volumes:
         - name: storage1
           hostPath:
-            path: /disk1/minio
+            path: /disk1/
             type: Directory
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: minio2
-  labels:
-    app: minio2
+  name: smb1
 spec:
   selector:
-    matchLabels:
-      app: minio2
-  template:
-    metadata:
-      labels:
-        app: minio2
-    spec:
-      containers:
-        - name: minio2
-          image: minio/minio
-          args:
-            - server
-            - /data
-            - --console-address
-            - ":9092"
-          ports:
-            - containerPort: 9092
-          volumeMounts:
-            - name: storage2
-              mountPath: /data
-
-      nodeSelector:
-        storage: "02"
-
-      volumes:
-        - name: storage2
-          hostPath:
-            path: /disk1/minio
-            type: Directory
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: minio3
-  labels:
-    app: minio3
-spec:
-  selector:
-    matchLabels:
-      app: minio3
-  template:
-    metadata:
-      labels:
-        app: minio3
-    spec:
-      containers:
-        - name: minio3
-          image: minio/minio
-          args:
-            - server
-            - /data
-            - --console-address
-            - ":9093"
-          ports:
-            - containerPort: 9093
-          volumeMounts:
-            - name: storage3
-              mountPath: /data
-
-      nodeSelector:
-        storage: "03"
-
-      volumes:
-        - name: storage3
-          hostPath:
-            path: /disk1/minio
-            type: Directory
+    app: smb1
+  ports:
+    - name: "139"
+      protocol: TCP
+      port: 139
+      targetPort: 139
+    - name: "445"
+      protocol: TCP
+      port: 445
+      targetPort: 445

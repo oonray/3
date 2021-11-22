@@ -1,4 +1,4 @@
-namespace: minio
+namespace: storage
 resources:
   - deployment.yaml
   - ingress.yaml
