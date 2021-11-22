@@ -43,6 +43,7 @@ metadata:
 spec:
   selector:
     app: smb1
+  type: NodePort
   ports:
     - name: "139"
       protocol: TCP
