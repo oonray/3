@@ -1,5 +1,4 @@
 namespace: storage
 resources:
   - deployment.yaml
-  - ingress.yaml
   - secrets.enc.json
