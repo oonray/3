@@ -18,7 +18,6 @@ spec:
         - name: samba
           image: dperson/samba
           args:
-            - "-n"
             - "-r"
             - "-s data;/disk1"
           ports:
