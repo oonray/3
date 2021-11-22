@@ -53,3 +53,115 @@ status:
     loadBalancer:
       ingress:
         - ip: 192.168.10.41
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smb2
+  labels:
+    app: smb2
+spec:
+  selector:
+    matchLabels:
+      app: smb2
+  template:
+    metadata:
+      labels:
+        app: smb2
+    spec:
+      containers:
+        - name: samba
+          image: dperson/samba
+          args:
+            - "-s data;/disk1"
+          ports:
+            - containerPort: 139
+            - containerPort: 445
+          volumeMounts:
+            - name: storage1
+              mountPath: /mount
+
+      nodeSelector:
+        storage: "02"
+
+      volumes:
+        - name: storage1
+          hostPath:
+            path: /disk1/
+            type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smb2
+spec:
+  selector:
+    app: smb2
+  ports:
+    - name: "139"
+      protocol: TCP
+      port: 139
+    - name: "445"
+      protocol: TCP
+      port: 445
+status:
+    loadBalancer:
+      ingress:
+        - ip: 192.168.10.41
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smb3
+  labels:
+    app: smb3
+spec:
+  selector:
+    matchLabels:
+      app: smb3
+  template:
+    metadata:
+      labels:
+        app: smb3
+    spec:
+      containers:
+        - name: samba
+          image: dperson/samba
+          args:
+            - "-s data;/disk1"
+          ports:
+            - containerPort: 139
+            - containerPort: 445
+          volumeMounts:
+            - name: storage1
+              mountPath: /mount
+
+      nodeSelector:
+        storage: "03"
+
+      volumes:
+        - name: storage1
+          hostPath:
+            path: /disk1/
+            type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smb3
+spec:
+  selector:
+    app: smb3
+  ports:
+    - name: "139"
+      protocol: TCP
+      port: 139
+    - name: "445"
+      protocol: TCP
+      port: 445
+status:
+    loadBalancer:
+      ingress:
+        - ip: 192.168.10.41
