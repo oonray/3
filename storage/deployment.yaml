@@ -49,18 +49,10 @@ spec:
     - name: "445"
       protocol: TCP
       port: 445
-
----
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: smb1
-subsets:
-  - addresses:
-      - ip: 192.168.10.41
-    ports:
-      - port: 445
-      - port: 139
+status:
+    loadBalancer:
+      ingress:
+        - ip: 192.168.10.41
 ---
 apiVersion: apps/v1
 kind: Deployment
