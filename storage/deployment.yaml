@@ -18,7 +18,7 @@ spec:
         - name: samba
           image: dperson/samba
           args:
-            - "-s data;/disk1"
+            - "-s data;/mount"
           ports:
             - containerPort: 139
             - containerPort: 445
@@ -32,7 +32,7 @@ spec:
       volumes:
         - name: storage1
           hostPath:
-            path: /disk1/
+            path: /disk1
             type: Directory
 ---
 apiVersion: v1
@@ -74,7 +74,7 @@ spec:
         - name: samba
           image: dperson/samba
           args:
-            - "-s data;/disk1"
+            - "-s data;/mount"
           ports:
             - containerPort: 139
             - containerPort: 445
@@ -88,7 +88,7 @@ spec:
       volumes:
         - name: storage1
           hostPath:
-            path: /disk1/
+            path: /disk1
             type: Directory
 ---
 apiVersion: v1
@@ -130,7 +130,7 @@ spec:
         - name: samba
           image: dperson/samba
           args:
-            - "-s data;/disk1"
+            - "-s data;/mount"
           ports:
             - containerPort: 139
             - containerPort: 445
@@ -144,7 +144,7 @@ spec:
       volumes:
         - name: storage1
           hostPath:
-            path: /disk1/
+            path: /disk1
             type: Directory
 ---
 apiVersion: v1
