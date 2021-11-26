@@ -27,7 +27,7 @@ spec:
           image: dperson/samba
           args:
             - "-s"
-            - "data;/mount;admin"
+            - "data;/mount"
             - "-u"
             - "$USERNAME"
           ports:
