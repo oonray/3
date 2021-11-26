@@ -42,6 +42,7 @@ metadata:
 spec:
   selector:
     app: smb1
+  type: LoadBalancer
   ports:
     - name: "139"
       protocol: TCP
