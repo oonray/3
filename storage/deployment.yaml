@@ -26,8 +26,7 @@ spec:
         - name: samba
           image: dperson/samba
           args:
-            - "-s data;/mount"
-            - "-u $USERNAME"
+            - "-s data;/mount -u $USERNAME"
           ports:
             - containerPort: 139
             - containerPort: 445
