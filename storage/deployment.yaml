@@ -27,7 +27,7 @@ spec:
               mountPath: /mount
 
       nodeSelector:
-        storage: "01"
+        storage: 01
 
       volumes:
         - name: storage1
@@ -79,14 +79,14 @@ spec:
             - containerPort: 139
             - containerPort: 445
           volumeMounts:
-            - name: storage1
+            - name: storage2
               mountPath: /mount
 
       nodeSelector:
-        storage: "02"
+        storage: 02
 
       volumes:
-        - name: storage1
+        - name: storage2
           hostPath:
             path: /disk1
             type: Directory
@@ -135,14 +135,14 @@ spec:
             - containerPort: 139
             - containerPort: 445
           volumeMounts:
-            - name: storage1
+            - name: storage3
               mountPath: /mount
 
       nodeSelector:
-        storage: "03"
+        storage: 03
 
       volumes:
-        - name: storage1
+        - name: storage3
           hostPath:
             path: /disk1
             type: Directory
