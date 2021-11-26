@@ -26,13 +26,19 @@ spec:
         - name: samba
           image: dperson/samba
           args:
-            - "-s data;/mount"
+            - "-s data;/mount -u $USERNAME"
           ports:
             - containerPort: 139
             - containerPort: 445
           volumeMounts:
             - name: storage1
-              mountPath: /mount
+              mountPath: /moun
+          env:
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: samba-secret
+                  key: user
 
 ---
 apiVersion: v1
@@ -75,17 +81,24 @@ spec:
           hostPath:
             path: /disk1
             type: Directory
+
       containers:
         - name: samba
           image: dperson/samba
           args:
-            - "-s data;/mount"
+            - "-s data;/mount -u $USERNAME"
           ports:
             - containerPort: 139
             - containerPort: 445
           volumeMounts:
             - name: storage2
               mountPath: /mount
+          env:
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: samba-secret
+                  key: user
 
 ---
 apiVersion: v1
@@ -132,13 +145,19 @@ spec:
         - name: samba
           image: dperson/samba
           args:
-            - "-s data;/mount"
+            - "-s data;/mount -u $USERNAME"
           ports:
             - containerPort: 139
             - containerPort: 445
           volumeMounts:
             - name: storage3
               mountPath: /mount
+          env:
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: samba-secret
+                  key: user
 
 
 ---
