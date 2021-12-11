@@ -24,7 +24,7 @@ spec:
             type: Directory
       containers:
         - name: minectaft
-          image: minecraftservers/minecraft-server
+          image: oonray/munin
           ports:
             - containerPort: 25565
           volumeMounts:
