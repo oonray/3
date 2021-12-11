@@ -32,7 +32,7 @@ spec:
               mountPath: /data
           env:
             - name: EULA
-              value: TRUE
+              value: "TRUE"
 
 ---
 apiVersion: v1
