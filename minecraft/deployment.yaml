@@ -24,7 +24,7 @@ spec:
             type: Directory
       containers:
         - name: minectaft
-          image: openhack/minecraft-server
+          image: debian
           ports:
             - containerPort: 25565
           volumeMounts:
