@@ -29,7 +29,7 @@ spec:
             - containerPort: 25565
           volumeMounts:
             - name: storage1
-              mountPath: /data
+              mountPath: /
           env:
             - name: EULA
               value: "TRUE"
