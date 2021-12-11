@@ -1,0 +1,4 @@
+namespace: storage
+resources:
+  - deployment.yaml
+  - secrets.enc.json

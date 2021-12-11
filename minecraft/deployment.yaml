@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft
+  labels:
+    app: minecraft
+spec:
+  selector:
+    matchLabels:
+      app: minecraft
+  template:
+    metadata:
+      labels:
+        app: minecraft
+    spec:
+      nodeSelector:
+        storage: "01"
+
+      volumes:
+        - name: storage1
+          hostPath:
+            path: /disk1/minecraft
+            type: Directory
+      containers:
+        - name: minectaft
+          image: itzg/minecraft-server
+          ports:
+            - containerPort: 25565:25565
+          volumeMounts:
+            - name: storage1
+              mountPath: /data
+          env:
+            - name: EULA
+              value: TRUE
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minectaft
+spec:
+  selector:
+    app: minectaft
+  ports:
+    - name: "default"
+      protocol: TCP
+      port: 25565
+  externalIPs:
+    - 192.168.10.41
