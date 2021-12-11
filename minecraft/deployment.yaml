@@ -24,7 +24,7 @@ spec:
             type: Directory
       containers:
         - name: minectaft
-          image: itzg/minecraft-server
+          image: minecraftservers/minecraft-server
           ports:
             - containerPort: 25565
           volumeMounts:
