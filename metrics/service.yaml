@@ -6,6 +6,7 @@ metadata:
 spec:
   selector:
     app: graphite
+  type: NodePort
   ports:
     - name: "80"
       protocol: TCP
