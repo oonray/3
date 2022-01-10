@@ -17,10 +17,10 @@ spec:
         - name: graphite
           image: graphiteapp/graphite-statsd
           ports:
-            - conteinerPort: 80
-            - conteinerPort: 2003
-            - conteinerPort: 2004
-            - conteinerPort: 2023
-            - conteinerPort: 2024
-            - conteinerPort: 8125
-            - conteinerPort: 8126
+            - containerPort: 80
+            - containerPort: 2003
+            - containerPort: 2004
+            - containerPort: 2023
+            - containerPort: 2024
+            - containerPort: 8125
+            - containerPort: 8126
