@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hashtopolis
+  labels:
+    app: hashtopolis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hashtopolis
+  template:
+    metadata:
+      labels:
+        app: hashtopolis
+    spec:
+      containers:
+        - name: hashtopolis
+          image: kpeiruza/hashtopolis
+          ports:
+            - containerPort: 80
+
+        - name: mysql
+          image: mysql
+            - containerPort: 3306
+
+        - name: adminer
+          image: adminer
+          ports:
+            - containerPort: 8080

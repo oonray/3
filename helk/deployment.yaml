@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: graphite-deployment
+  labels:
+    app: graphite
+spec:
+  selector:
+    matchLabels:
+      app: graphite
+  template:
+    metadata:
+      labels:
+        app: graphite
+    spec:
+      containers:
+        - name: graphite
+          image: graphiteapp/graphite-statsd
