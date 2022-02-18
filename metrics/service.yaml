@@ -64,6 +64,7 @@ metadata:
 spec:
   selector:
     app: graphite
+  type: NodePort
   ports:
     - name: interface
       protocol: TCP
