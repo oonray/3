@@ -1,37 +1,88 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: graphite-nginx
+spec:
+  selector:
+    app: graphite
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: graphite
+  name: graphite-carbon-receaver
 spec:
   selector:
     app: graphite
-  type: NodePort
   ports:
-    - name: "80"
-      protocol: TCP
-      port: 80
-
-    - name: "2003"
+    - name: plaintext
       protocol: TCP
       port: 2003
-
-    - name: "2004"
+      targetPort: 2003
+    - name: pickle
       protocol: TCP
       port: 2004
-
-    - name: "2023"
+      targetPort: 2004
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: graphite-carbon-aggregator
+spec:
+  selector:
+    app: graphite
+  ports:
+    - name: plaintext
       protocol: TCP
       port: 2023
-
-    - name: "2024"
+      targetPort: 2023
+    - name: pickle
       protocol: TCP
       port: 2024
+      targetPort: 2024
 
-    - name: "8125"
-      protocol: UDP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: graphite-webserver-gunicorn
+spec:
+  selector:
+    app: graphite
+  ports:
+      - protocol: TCP
+        port: 8080
+        targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: graphite-statsd
+spec:
+  selector:
+    app: graphite
+  ports:
+    - name: interface
+      protocol: TCP
       port: 8125
-
-    - name: "8126"
+      targetPort: 8125
+    - name: admin
       protocol: TCP
       port: 8126
+      targetPort: 8126
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+spec:
+  selector:
+    app: grafana
+  ports:
+    - name: interface
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
